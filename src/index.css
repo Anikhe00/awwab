@@ -1,0 +1,94 @@
+@import "tailwindcss";
+@import "@fontsource-variable/source-serif-4";
+@import "@fontsource/amiri-quran";
+@import "@fontsource/amiri/400.css";
+@import "@fontsource/amiri/700.css";
+
+@custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
+
+:root {
+  --paper: #f6f1e7;
+  --card: #fffdf8;
+  --ink: #23302b;
+  --muted: #667068;
+  --line: #e3dac6;
+  --accent: #2f5d50;
+  --accent-soft: #dcebe4;
+  --accent-ink: #ffffff;
+  --gold: #a9802f;
+  --gold-soft: #f3e7c6;
+  --sky: #eaf1ef;
+  --ground: #d9c9a3;
+}
+[data-theme=dark] {
+  --paper: #0d1716;
+  --card: #15231f;
+  --ink: #e9e3d2;
+  --muted: #9aa69d;
+  --line: #27383a;
+  --accent: #79b8a2;
+  --accent-soft: #1e3a33;
+  --accent-ink: #0d1716;
+  --gold: #d9b969;
+  --gold-soft: #3a3320;
+  --sky: #101f24;
+  --ground: #2a2a20;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-card: var(--card);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-sky: var(--sky);
+  --font-serif: "Source Serif 4 Variable", Georgia, serif;
+  --font-arabic: "Amiri Quran", "Amiri", "Scheherazade New", serif;
+}
+
+html { background: var(--paper); color: var(--ink); -webkit-tap-highlight-color: transparent; }
+body {
+  margin: 0; font-family: var(--font-serif); font-size: 1.05rem; line-height: 1.55;
+  background: var(--paper); min-height: 100dvh;
+}
+h1, h2, h3 { font-weight: 600; letter-spacing: -0.01em; }
+button, a, input, select, textarea, summary { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; border-radius: 10px; }
+
+.arabic { font-family: var(--font-arabic); direction: rtl; line-height: 2.3; }
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  min-height: 48px; min-width: 48px; padding: 0 1.25rem; border-radius: 14px;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink);
+  font: inherit; font-weight: 600; cursor: pointer; text-decoration: none;
+}
+.btn:hover { border-color: var(--accent); }
+.btn-primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+.btn-primary:hover { filter: brightness(1.06); }
+.btn-ghost { background: transparent; }
+.btn:disabled { opacity: .5; cursor: not-allowed; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 1.25rem; }
+.input {
+  min-height: 48px; padding: .5rem .9rem; border-radius: 12px; font: inherit;
+  border: 1px solid var(--line); background: var(--card); color: var(--ink); width: 100%;
+}
+.chip { display: inline-flex; align-items: center; min-height: 32px; padding: 0 .75rem; border-radius: 999px; background: var(--accent-soft); font-size: .9rem; }
+@keyframes sway { 0%,100% { transform: rotate(-1.2deg); } 50% { transform: rotate(1.2deg); } }
+.sway { transform-origin: 50% 100%; transform-box: fill-box; animation: sway 7s ease-in-out infinite; }
+@keyframes rise { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+.rise { animation: rise .5s ease both; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+@keyframes slideup { from { transform: translateY(40px); opacity: 0; } to { transform: none; opacity: 1; } }
+.sheet { animation: slideup .25s ease both; }
+.hit:focus-visible, g:focus-visible > .hit { stroke: var(--gold); stroke-width: 3; }
+g[role=button]:focus-visible { outline: none; }
+g[role=button]:focus-visible > .hit { stroke: var(--gold); stroke-width: 4; }
+@keyframes slideleft { from { transform: translateX(48px); opacity: 0; } to { transform: none; opacity: 1; } }
+.sheet-right { animation: slideleft .25s ease both; }
